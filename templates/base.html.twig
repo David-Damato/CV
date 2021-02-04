@@ -1,13 +1,31 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {% block javascripts %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+		{{ encore_entry_link_tags('app') }}
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		<header>
+			{% include '_navbar.html.twig' %}
+		</header>
+		{% block body %}{% endblock %}
+		{{ encore_entry_script_tags('app') }}
+		{{ encore_entry_script_tags('mainapp') }}
+		{% block javascripts %}{% endblock %}
+
+		<footer>
+			{% include '_footer.html.twig' %}
+
+		</footer>
+	</body>
 </html>

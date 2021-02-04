@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Picture index{% endblock %}
+
+{% block body %}
+    <section class="hero-wrap hero-wrap-2 img-black-white" style="background-image: url('{{ asset('build/images/4271330660_74de175953_o.jpg') }}')" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row  slider-text align-items-center justify-content-center">
+          <div class="col-md-9 text-center mt-5">
+            <h1 class="mb-2 bread">KlassEvent</h1>
+            <h2 class="breadcrumbs" style="font-size: 25px;">Evenements</h2>
+          </div>
+        </div>
+      </div>
+</section>
+    
+    <h1>Picture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Path</th>
+                <th>Alt</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for picture in pictures %}
+            <tr>
+                <td>{{ picture.id }}</td>
+                <td>{{ picture.path }}</td>
+                <td>{{ picture.alt }}</td>
+                <td>{{ picture.name }}</td>
+                <td>
+                    <a href="{{ path('admin_picture_show', {'id': picture.id}) }}">show</a>
+                    <a href="{{ path('admin_picture_edit', {'id': picture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_picture_new') }}">Create new</a>
+{% endblock %}
