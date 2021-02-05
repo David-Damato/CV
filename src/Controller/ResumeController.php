@@ -20,8 +20,16 @@ class ResumeController extends AbstractController
      */
     public function index(ResumeRepository $resumeRepository): Response
     {
+        $formation = $resumeRepository->findBy(
+            ['type' => 'formation']
+        );
+        $experience = $resumeRepository->findBy(
+            ['type' => 'experience']
+        );
+
         return $this->render('resume/index.html.twig', [
-            'resumes' => $resumeRepository->findAll(),
+            'formation' => $formation,
+            'experience' => $experience,
         ]);
     }
 
@@ -41,7 +49,7 @@ class ResumeController extends AbstractController
 
             return $this->redirectToRoute('resume_index');
         }
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         return $this->render('resume/new.html.twig', [
             'resume' => $resume,
             'form' => $form->createView(),
@@ -53,6 +61,7 @@ class ResumeController extends AbstractController
      */
     public function show(Resume $resume): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         return $this->render('resume/show.html.twig', [
             'resume' => $resume,
         ]);
@@ -71,7 +80,7 @@ class ResumeController extends AbstractController
 
             return $this->redirectToRoute('resume_index');
         }
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         return $this->render('resume/edit.html.twig', [
             'resume' => $resume,
             'form' => $form->createView(),
@@ -83,12 +92,12 @@ class ResumeController extends AbstractController
      */
     public function delete(Request $request, Resume $resume): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$resume->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $resume->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($resume);
             $entityManager->flush();
         }
-
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         return $this->redirectToRoute('resume_index');
     }
 }

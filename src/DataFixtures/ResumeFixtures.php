@@ -14,6 +14,7 @@ class ResumeFixtures extends Fixture
         'BTS' => [
             'type' => 'formation',
             'lieu' => 'Alphonse Henrich',
+            'adresse' => 'Haguenau',
             'date_debut' => '01-09-2011',
             'date_fin' => '01-09-2013',
             'subject' => 'BTS',
@@ -23,6 +24,7 @@ class ResumeFixtures extends Fixture
         'Bootcamp' => [
             'type' => 'formation',
             'lieu' => 'wild Code School',
+            'adresse' => 'Strasbourg',
             'date_debut' => '01-08-2020',
             'date_fin' => '15-02-2021',
             'subject' => 'Bootcamp',
@@ -31,6 +33,7 @@ class ResumeFixtures extends Fixture
         'PRE-CONTRACTING LINE DESIGNER' => [
             'type' => 'experience',
             'lieu' => 'SIDEL (Tetra pack group)',
+            'adresse' => 'Strasbourg',
             'date_debut' => '01-05-2016',
             'date_fin' => '01-08-2020',
             'subject' => 'CDI',
@@ -41,6 +44,7 @@ class ResumeFixtures extends Fixture
         'DEVELOPPEUR WEB' => [
             'type' => 'experience',
             'lieu' => 'wild code school',
+            'adresse' => 'Strasbourg',
             'date_debut' => '01-08-2020',
             'date_fin' => '15-02-2021',
             'subject' => 'Projet consistant à réaliser un site de service en ligne',
@@ -53,6 +57,7 @@ class ResumeFixtures extends Fixture
         'DEVELOPPEUR WEB' => [
             'type' => 'experience',
             'lieu' => 'wild code school',
+            'adresse' => 'Strasbourg',
             'date_debut' => '01-08-2020',
             'date_fin' => '15-02-2021',
             'subject' => 'Projet "Back to the future" consistant à réaliser un site avec une API',
@@ -65,6 +70,7 @@ class ResumeFixtures extends Fixture
         'DEVELOPPEUR WEB' => [
             'type' => 'experience',
             'lieu' => 'wild code school',
+            'adresse' => 'Strasbourg',
             'date_debut' => '01-08-2020',
             'date_fin' => '15-02-2021',
             'subject' => 'Projet consistant à réaliser un site d’évent et de traiteur pour un client',
@@ -84,6 +90,7 @@ class ResumeFixtures extends Fixture
             $object->setName($nom);
             $object->setType($data['type']);
             $object->setLieu($data['lieu']);
+            $object->setAdresse($data['adresse']);
             $object->setDateDebut($data['date_debut']);
             $object->setDateFin($data['date_fin']);
             $object->setSubject($data['subject']);
@@ -93,4 +100,3 @@ class ResumeFixtures extends Fixture
         $manager->flush();
     }
 }
-

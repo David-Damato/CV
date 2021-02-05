@@ -1,49 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Resume index{% endblock %}
+{% block title %}Hello ResumeController!
+{% endblock %}
 
 {% block body %}
-    <h1>Resume index</h1>
+	<main id="main">
+		<section id="resume" class="resume">
+			<div class="container">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Lieu</th>
-                <th>Adresse</th>
-                <th>Subject</th>
-                <th>Message</th>
-                <th>Date_debut</th>
-                <th>Date_fin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for resume in resumes %}
-            <tr>
-                <td>{{ resume.id }}</td>
-                <td>{{ resume.name }}</td>
-                <td>{{ resume.type }}</td>
-                <td>{{ resume.lieu }}</td>
-                <td>{{ resume.adresse }}</td>
-                <td>{{ resume.subject }}</td>
-                <td>{{ resume.message }}</td>
-                <td>{{ resume.dateDebut ? resume.dateDebut|date('Y-m-d') : '' }}</td>
-                <td>{{ resume.dateFin ? resume.dateFin|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('resume_show', {'id': resume.id}) }}">show</a>
-                    <a href="{{ path('resume_edit', {'id': resume.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+				<div class="section-title">
+					<h2>Curriculum Vitae</h2>
+				</div>
 
-    <a href="{{ path('resume_new') }}">Create new</a>
-{% endblock %}
+				<div class="row">
+					<div class="col-lg-6" {# data-aos="fade-up" #}>
+
+						<h3 class="resume-title">Formation</h3>
+						{% for formations in formation %}
+							<div class="resume-item">
+								<h4>{{formations.name}}
+									&amp; Graphic Design</h4>
+								<h5>{{formations.datedebut}}
+									-
+									{{formations.datefin}}</h5>
+								<p>
+									<em>{{formations.lieu}},
+										{{formations.adresse}}</em>
+								</p>
+								<p>{{formations.message}}</p>
+								{% if is_granted('ROLE_ADMIN') %}
+									<td>
+										<a href="{{ path('resume_edit', {'id': formations.id}) }}">edit</a>
+									</td>
+								{% endif %}
+							</div>
+						{% endfor %}
+					</div>
+					<div class="col-lg-6" {# data-aos="fade-up" #} data-aos-delay="100">
+						<h3 class="resume-title">Expérience professionel</h3>
+						{% for experiences in experience %}
+							<div class="resume-item">
+								<h4>{{experiences.name}}
+								</h4>
+								<h5>{{experiences.datedebut}}
+									-
+									{{experiences.datefin}}</h5>
+								<p>
+									<em>{{experiences.lieu}},
+										{{experiences.adresse}}</em>
+								</p>
+								<p>{{experiences.message}}</p>
+								{% if is_granted('ROLE_ADMIN') %}
+									<td>
+										<a href="{{ path('resume_edit', {'id': experiences.id}) }}">edit</a>
+									</td>
+								{% endif %}
+							</div>
+						{% endfor %}
+					</div>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('resume_new') }}">Create new</a>
+					{% endif %}
+				</div>
+			</section>
+		</main>
+
+	{% endblock %}
