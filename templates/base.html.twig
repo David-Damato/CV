@@ -18,10 +18,13 @@
 		<header>
 			{% include '_navbar.html.twig' %}
 		</header>
+
 		{% block body %}{% endblock %}
-		{{ encore_entry_script_tags('app') }}
-		{{ encore_entry_script_tags('mainapp') }}
-		{% block javascripts %}{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('mainapp') }}
+		{% endblock %}
 
 		<footer>
 			{% include '_footer.html.twig' %}

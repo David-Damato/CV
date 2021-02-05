@@ -20,8 +20,9 @@ import './styles/style.css';
 import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
+require('bootstrap');
 
-// start the Stimulus application
+/* // start the Stimulus application
 import './vendor/bootstrap/js/bootstrap.bundle.min';
 import './vendor/php-email-form/validate';
 import './vendor/waypoints/jquery.waypoints.min';
@@ -31,3 +32,4 @@ import './vendor/venobox/venobox';
 import './vendor/owl.carousel/owl.carousel.min';
 import './vendor/typed.js/typed.min';
 import './vendor/aos/aos';
+ */
