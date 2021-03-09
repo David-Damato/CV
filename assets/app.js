@@ -13,7 +13,6 @@ import './vendor/icofont/icofont.min.css';
 import './vendor/boxicons/css/boxicons.min.css';
 import './vendor/venobox/venobox.css';
 import './vendor/owl.carousel/assets/owl.carousel.min.css';
-import './vendor/aos/aos.css';
 
 import './styles/style.css';
 
